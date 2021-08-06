@@ -16,6 +16,17 @@
     position: relative;
 }
 
-.experienceBar > div >div {
-    
+.experienceBar > div > div {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--green);
+
+    transition: width 0.4s;
+}
+
+.experienceBar span.currentExperience {
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+    transition: left 0.4s;
 }
