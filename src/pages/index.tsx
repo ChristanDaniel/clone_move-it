@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ExperienceBar } from '../components/ExperienceBar'
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       </Head>
 
       <h1>hello World</h1>
+      <ExperienceBar />
     </>
   )
 }

@@ -7,6 +7,7 @@ export function ExperienceBar() {
             <div>
                 <div />
             </div>
+            <span>xp</span>
         </header>
     )
 }
