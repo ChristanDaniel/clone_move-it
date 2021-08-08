@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useState, ReactNode, useEffect, Children } from 'react';
 import challenges from '../../challenges.json';
 import Cookies from 'js-cookie'
 
@@ -89,4 +89,25 @@ export function ChallengesProvider( {...rest}: ChallengesProviderProps ) {
         setActiveChallenge(null)
     }
 
+    function resetChallenge() {
+        setActiveChallenge(null);
+    }
+
+    return(
+        <ChallengesContext.Provider value={{
+            level,
+            challengesCompleted,
+            currentExperience,
+            experienceToNextLevel,
+            activeChallenge,
+            completeChallenge,
+            startNewChallenge,
+            resetChallenge,
+            closeLevelUpModal,
+        }}>
+            {Children}
+            { isLevelUpModal } 
+        </ChallengesContext.Provider>
+    )
+     // { isLevelUpModalOpen && <LevelUpModal/> }
 }
