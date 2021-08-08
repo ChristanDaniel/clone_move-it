@@ -8,6 +8,8 @@ interface Challenge {
     amount: number;
 }
 
+
+
 interface ChallengesProviderProps {
     children: ReactNode;
     level: number;
@@ -20,7 +22,10 @@ export function ChallengesProvider( {...rest}: ChallengesProviderProps ) {
     const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0 )
 
-    const [activeChallenge, setActiveChallenge] = useState<Challenge>() //null <-- não esquece
+    const [activeChallenge, setActiveChallenge] = useState<Challenge>(null) //null <-- não esquece
+    const [isLevelUpModal, setIsLevelUpModalOpen]= useState(false)
+
+    const experienceToNextLevel = Math.pow(((level + 1) * 4), 2);
 
     useEffect(() => {
         Cookies.set('level', String(level))
@@ -33,5 +38,43 @@ export function ChallengesProvider( {...rest}: ChallengesProviderProps ) {
         const challenge = challenges[randomChallengeIndex];
 
         setActiveChallenge(challenge as Challenge);
+
+        new Audio('/notification.mp3').play();
+
+        if (Notification.permission === 'granted') {
+            new Notification('Novo desafio 🎉', {
+                body: `Valendo ${challenge.amount} de xp!`,
+                silent: false,
+            })
+        }
     }
+
+    function levelUp() {
+        setLevel(level + 1);
+        setIsLevelUpModalOpen(true);
+    }
+
+    function closeLevelUpModal() {
+        setIsLevelUpModalOpen(false);
+    }
+
+    function completeChallenge() {
+        if (!activeChallenge) {
+            return;
+        }
+
+        const { amount } = activeChallenge
+
+        let finalExperience = currentExperience + amount
+
+        if (finalExperience >= experienceToNextLevel) {
+            finalExperience = finalExperience - experienceToNextLevel;
+            levelUp()
+        }
+
+        setChallengesCompleted(challengesCompleted + 1);
+        setCurrentExperience(finalExperience).
+        setActiveChallenge(null)
+    }
+
 }
