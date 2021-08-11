@@ -13,6 +13,7 @@ export default function Home() {
       <h1>hello World</h1>
       <ExperienceBar />
       <Profile />
+
     </>
   )
 }
