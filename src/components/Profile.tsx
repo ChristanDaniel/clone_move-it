@@ -2,6 +2,12 @@ import { useChallenges } from "../hooks/useChallenges";
 
 import styles from '../styles/components/Profile.module.css'
 
+import Image from 'next/image'
+import profilePic from '../../public/icons/level.svg'
+
+const myLoader = () => {
+    return `https://github.com/ChristanDaniel.png`
+}
 
 
 export function Profile() {
@@ -9,11 +15,17 @@ export function Profile() {
 
     return(
         <div className={styles.profileContainer}>
-            {/* <img src="https://github.com/ChristanDaniel.png" alt="Diego Fernandes "/> */}
+            <Image
+                loader={myLoader}
+                src="me.png"
+                alt="Christan Daniel"
+                width={88}
+                height={88}
+            />
             <div>
                 <strong>Christian Daniel</strong>
                 <p>
-                    {/* <img src="icons/level.svg" alt="Level" /> */}
+                    <Image src={profilePic} alt="Level" />
                     Level {level}
                 </p>
             </div>
