@@ -1,0 +1,8 @@
+.profileContainer {
+    display: flex;
+    align-items: center;
+}
+
+.profileContainer > Img {
+    border-radius: 50%;
+}
