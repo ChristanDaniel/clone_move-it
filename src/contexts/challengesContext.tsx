@@ -30,15 +30,19 @@ interface ChallengesProviderProps {
 
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
-export function ChallengesProvider( {children, ...rest}: ChallengesProviderProps ) {
+export function ChallengesProvider({children, ...rest}: ChallengesProviderProps) {
     const [level, setLevel] = useState(rest.level ?? 1)
     const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
-    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0 )
+    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0)
 
     const [activeChallenge, setActiveChallenge] = useState<Challenge>(null) //null <-- não esquece
     const [isLevelUpModal, setIsLevelUpModalOpen]= useState(false)
 
     const experienceToNextLevel = Math.pow(((level + 1) * 4), 2);
+
+    useEffect(() => {
+        Notification.requestPermission();
+    }, [])
 
     useEffect(() => {
         Cookies.set('level', String(level))

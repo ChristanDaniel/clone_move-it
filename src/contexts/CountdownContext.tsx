@@ -15,13 +15,6 @@ interface CountdownContextData {
     startCountdown: () => void;
 }
 
-interface ChallengesProviderProps {
-    children: ReactNode;
-    level: number;
-    currentExperience: number;
-    challengesCompleted: number;
-}
-
 
 let countdownTimeout: NodeJS.Timeout
 
@@ -40,7 +33,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
                 return 'Você perderá o progresso do countdown até aqui, tem certeza?'
             }
         }
-    }, [isActive])
+    }, [isActive]);
 
     useEffect(() => {
         if (isActive && time > 0) {
@@ -67,4 +60,19 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         setHasFinished(false);
     }
 
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+
+    return(
+        <CountdownContext.Provider value={{
+            isActive,
+            resetCountdown,
+            hasFinished,
+            startCountdown,
+            minutes,
+            seconds,
+        }}>
+            {children}
+        </CountdownContext.Provider>
+    );
 }
