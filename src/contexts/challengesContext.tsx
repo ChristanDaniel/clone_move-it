@@ -16,7 +16,7 @@ interface ChallengesContextData {
     experienceToNextLevel: number;
     activeChallenge: Challenge;
     completeChallenge: () => void;
-    starNewChallenge: () => void;
+    startNewChallenge: () => void;
     resetChallenge: () => void;
     closeLevelUpModal: () => void;
 }
