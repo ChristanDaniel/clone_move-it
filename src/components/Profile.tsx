@@ -9,18 +9,17 @@ const myLoader = () => {
     return `https://github.com/ChristanDaniel.png`
 }
 
-
 export function Profile() {
     const { level } = useChallenges();
 
     return(
         <div className={styles.profileContainer}>
             <Image
-                loader={myLoader}
-                src="me.png"
-                alt="Christan Daniel"
-                width={88}
-                height={88}
+              loader={myLoader}
+              src="me.png"
+              alt="Christan Daniel"
+              width={88}
+              height={88} 
             />
             <div>
                 <strong>Christian Daniel</strong>
