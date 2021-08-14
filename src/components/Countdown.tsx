@@ -1,5 +1,7 @@
 import { useCountdown } from "../hooks/useCountdown";
+import cx from 'classnames';
 
+import styles from '../styles/components/Countdown.module.css';
 
 
 export function Countdown() {
@@ -17,7 +19,7 @@ export function Countdown() {
 
     return(
         <>
-            <div>
+            <div className={styles.countdown}>
                 <div>
                     <span>{minuteLeft}</span>
                     <span>{secondsLeft}</span>
@@ -29,9 +31,34 @@ export function Countdown() {
                 </div>
             </div>
 
-
-
-
+            { hasFinished ? (
+                <button
+                disabled
+                className={styles.startCycleButton}
+                >
+                    Ciclo encerrado
+                </button>
+            ): (
+                <>
+                  { isActive ? (
+                      <button
+                      type="button"
+                      className={cx(styles.startCycleButton, styles.startCycleButtonActive)}
+                      onClick={resetCountdown}
+                      >
+                          Abandonar ciclo
+                      </button>
+                  ): (
+                      <button
+                      type="button"
+                      className={styles.startCycleButton}
+                      onClick={startCountdown}
+                      >
+                          Iniciar um ciclo
+                      </button>
+                  )}
+                </>
+            )}
 
         </>
     );
