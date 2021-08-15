@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/classnames": "^2.3.1",
     "@types/js-cookie": "^2.2.7",
+    "cx": "^21.7.2",
     "js-cookie": "^3.0.0",
     "js-cookies": "^1.0.4",
     "next": "11.0.1",
