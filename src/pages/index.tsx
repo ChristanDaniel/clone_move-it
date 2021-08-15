@@ -10,6 +10,8 @@ import styles from '../styles/pages/Home.module.css'
 import { ChallengesProvider } from '../contexts/challengesContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
 
+import { GetServerSideProps } from 'next'
+
 interface HomeProps {
   level: number;
   currentExperience: number;
@@ -44,4 +46,16 @@ export default function Home({level, currentExperience, challengesCompleted}: Ho
     </ChallengesProvider>
 
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({req}) => {
+  const { level, currentExperience, challengesCompleted } = req.cookies;
+
+  return {
+    props: {
+      level: Number(level),
+      currentExperience: Number(currentExperience),
+      challengesCompleted: Number(challengesCompleted),
+    }
+  }
 }
