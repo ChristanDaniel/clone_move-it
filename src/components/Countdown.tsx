@@ -1,6 +1,5 @@
 import { useCountdown } from "../hooks/useCountdown";
-import cx from 'classnames';
-
+// import cx from 'classnames';
 import styles from '../styles/components/Countdown.module.css';
 
 
@@ -43,7 +42,7 @@ export function Countdown() {
                   { isActive ? (
                       <button
                       type="button"
-                      className={cx(styles.startCycleButton, styles.startCycleButtonActive)}
+                    //   className={cx(styles.startCycleButton, styles.startCycleButtonActive)}
                       onClick={resetCountdown}
                       >
                           Abandonar ciclo
